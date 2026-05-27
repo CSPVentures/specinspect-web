@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpecInspect — Construction Product Data at Your Fingertips</title>
+  <meta name="description" content="Search, scan, and compare 18,000+ construction product specifications. The fastest way to find product data on the jobsite.">
+  <meta property="og:title" content="SpecInspect — Construction Product Data at Your Fingertips">
+  <meta property="og:description" content="Search, scan, and compare 18,000+ construction product specifications. The fastest way to find product data on the jobsite.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="logo.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    :root {
+      --bg: #020817;
+      --surface: #0B1220;
+      --surface-alt: #111827;
+      --surface-muted: #1E293B;
+      --border: #1F2937;
+      --border-strong: #334155;
+      --text: #F8FAFC;
+      --text-soft: #E5E7EB;
+      --text-muted: #CBD5E1;
+      --text-dim: #94A3B8;
+      --gold: #FBBF24;
+      --gold-soft: #FCD34D;
+      --gold-card: #2A1F0C;
+      --gold-border: #4B3511;
+      --info-text: #93C5FD;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-soft); text-decoration: underline; }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-brand img { width: 40px; height: 40px; border-radius: 10px; }
+    .nav-brand span { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--text-muted); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-card);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero p {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── CTA ── */
+    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .btn:hover { transform: translateY(-1px); opacity: 0.95; }
+    .btn-primary {
+      background: var(--gold);
+      color: #111827;
+    }
+    .btn-secondary {
+      background: var(--surface-alt);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+
+    /* ── Stats ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 80px 0;
+    }
+    .stat {
+      background: var(--surface);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* ── Features ── */
+    .features { padding: 80px 0; }
+    .features h2 {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .features .subtitle {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 18px;
+      margin-bottom: 56px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: var(--border-strong); }
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ── Coming Soon ── */
+    .coming-soon {
+      text-align: center;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .coming-soon h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .coming-soon p {
+      color: var(--text-dim);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Email Signup ── */
+    .signup-form {
+      display: flex;
+      gap: 12px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .signup-form input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+    }
+    .signup-form input::placeholder { color: var(--text-dim); }
+    .signup-form input:focus { border-color: var(--gold); }
+    .signup-form button {
+      padding: 14px 24px;
+      border-radius: 12px;
+      background: var(--gold);
+      color: #111827;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .signup-success {
+      display: none;
+      color: #86EFAC;
+      font-size: 15px;
+      margin-top: 12px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      margin-top: 80px;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-left { color: var(--text-dim); font-size: 14px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-dim); font-size: 14px; }
+    .footer-links a:hover { color: var(--text-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      .hero p { font-size: 17px; }
+      .stats { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .signup-form { flex-direction: column; }
+      .nav-links { display: none; }
+      .stat-number { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Nav -->
+    <nav>
+      <div class="nav-brand">
+        <img src="logo.png" alt="SpecInspect">
+        <span>SpecInspect</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="accessibility.html">Accessibility</a>
+        <a href="mailto:paul@specinspect.com">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">📸 18,000+ Products</div>
+      <h1>Construction product data,<br><span class="gold">at your fingertips.</span></h1>
+      <p>Search, scan, and compare product specs instantly. The fastest way to find technical data on the jobsite.</p>
+      <div class="cta-group">
+        <a href="#signup" class="btn btn-primary">Get Notified at Launch</a>
+        <a href="#features" class="btn btn-secondary">See How It Works</a>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+      <div class="stat">
+        <div class="stat-number">18,000+</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">99%</div>
+        <div class="stat-label">Verified Data</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">16,500+</div>
+        <div class="stat-label">TDS PDFs</div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <h2>Built for the jobsite</h2>
+      <p class="subtitle">Everything you need to find and verify product data, fast.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Smart Search</h3>
+          <p>Search by name, brand, or product number. Fuzzy matching handles hyphens, abbreviations, and partial names.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📸</div>
+          <h3>Photo Scan</h3>
+          <p>Take a photo of any product label and AI instantly identifies it. No typing, no guessing — just scan and find.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Side-by-Side Compare</h3>
+          <p>Compare specs across up to 4 products at once. Coverage, cure time, VOC — see it all in one view.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>TDS &amp; Source PDFs</h3>
+          <p>16,500+ technical data sheets linked directly. Open manufacturer PDFs without leaving the app.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Submittal Builder</h3>
+          <p>Build submittal packages from saved specs. Select products, generate PDFs, send to the GC.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✔️</div>
+          <h3>Verified Data</h3>
+          <p>99% of products are verified against manufacturer sources. No crowd-sourced errors, no guessing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon / Signup -->
+    <section class="coming-soon" id="signup">
+      <h2>Coming Soon to the App Store</h2>
+      <p>Be the first to know when SpecInspect launches. Sign up for updates.</p>
+      <form class="signup-form" onsubmit="handleSignup(event)">
+        <input type="email" placeholder="your@email.com" required id="email-input">
+        <button type="submit">Notify Me</button>
+      </form>
+      <div class="signup-success" id="signup-success">✓ You're on the list! We'll be in touch.</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-left">&copy; 2026 SpecInspect LLC. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="mailto:paul@specinspect.com">paul@specinspect.com</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function handleSignup(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      // For now, show success. Replace with real backend (Mailchimp, etc.)
+      document.getElementById('signup-success').style.display = 'block';
+      document.getElementById('email-input').value = '';
+    }
+  </script>
+
+</body>
+</html>

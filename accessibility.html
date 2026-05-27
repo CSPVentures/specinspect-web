@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility — SpecInspect</title>
+  <style>
+    :root {
+      --bg: #020817;
+      --surface: #0B1220;
+      --surface-alt: #111827;
+      --border: #1F2937;
+      --text: #F8FAFC;
+      --text-muted: #CBD5E1;
+      --text-dim: #94A3B8;
+      --gold: #FBBF24;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-brand img { width: 40px; height: 40px; border-radius: 10px; }
+    .nav-brand span { font-size: 20px; font-weight: 700; color: var(--text); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--text-muted); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .content { padding: 60px 0; }
+    h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .updated { color: var(--text-dim); font-size: 14px; margin-bottom: 40px; }
+    h2 { font-size: 22px; font-weight: 600; margin-top: 40px; margin-bottom: 12px; }
+    p { color: var(--text-muted); margin-bottom: 16px; }
+    ul { color: var(--text-muted); margin-bottom: 16px; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      margin-top: 40px;
+    }
+    .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-left { color: var(--text-dim); font-size: 14px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-dim); font-size: 14px; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="nav-brand">
+        <a href="index.html"><img src="logo.png" alt="SpecInspect"></a>
+        <a href="index.html"><span>SpecInspect</span></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+
+    <div class="content">
+      <h1>Accessibility Statement</h1>
+      <p class="updated">Last updated: May 26, 2026</p>
+
+      <h2>Our Commitment</h2>
+      <p>SpecInspect LLC is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards.</p>
+
+      <h2>Standards</h2>
+      <p>We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA for our website and strive to make our mobile application accessible in accordance with WCAG 2.1 Level AA and the iOS Accessibility Guidelines where applicable.</p>
+
+      <h2>Measures We Take</h2>
+      <ul>
+        <li>High contrast text and interface elements for readability in outdoor jobsite conditions</li>
+        <li>Support for iOS Dynamic Type and system font sizing</li>
+        <li>Screen reader compatibility (VoiceOver on iOS)</li>
+        <li>Sufficient color contrast ratios (minimum 4.5:1 for normal text)</li>
+        <li>Clear and consistent navigation patterns</li>
+        <li>Alternative text for images and icons</li>
+        <li>Keyboard and gesture-based navigation support</li>
+      </ul>
+
+      <h2>Known Limitations</h2>
+      <p>Despite our best efforts, some accessibility limitations may exist:</p>
+      <ul>
+        <li>Some third-party PDF documents (manufacturer TDS sheets) linked from the app may not be fully accessible, as they are provided by third parties outside our control</li>
+        <li>The photo scan feature relies on camera input which may not be usable by all users</li>
+      </ul>
+      <p>We are working to address these limitations and improve accessibility over time.</p>
+
+      <h2>Feedback</h2>
+      <p>We welcome your feedback on the accessibility of SpecInspect. If you encounter accessibility barriers or have suggestions for improvement, please contact us:</p>
+      <ul>
+        <li>Email: <a href="mailto:paul@specinspect.com">paul@specinspect.com</a></li>
+      </ul>
+      <p>We will respond to accessibility feedback within 5 business days and propose a solution within 10 business days.</p>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-left">&copy; 2026 SpecInspect LLC. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
