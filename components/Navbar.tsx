@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import type { User } from '@/lib/types';
@@ -34,17 +35,12 @@ export default function Navbar({ user }: { user: User | null }) {
       ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy text-white">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md text-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange font-mono text-sm">
-            SI
-          </span>
-          <span className="hidden sm:block">
+        <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight shrink-0">
+          <Image src="/logo.png" alt="SpecInspect" width={36} height={36} className="rounded-lg" priority />
+          <span className="hidden sm:block text-lg">
             SpecInspect
-            <span className="ml-2 hidden font-mono text-[10px] font-normal uppercase tracking-widest text-slate-400 lg:inline">
-              Construction Specification Intelligence
-            </span>
           </span>
         </Link>
 
@@ -62,7 +58,7 @@ export default function Navbar({ user }: { user: User | null }) {
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search 30,000+ products…"
               aria-label="Search products"
-              className="w-full rounded-lg border border-white/15 bg-white/10 py-2 pl-9 pr-3 text-sm placeholder:text-slate-400 focus:border-orange"
+              className="w-full rounded-lg border border-white/15 bg-white/10 py-2 pl-9 pr-3 text-sm placeholder:text-slate-400 focus:border-orange focus:outline-none"
             />
           </div>
         </form>

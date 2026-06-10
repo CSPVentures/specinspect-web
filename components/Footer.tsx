@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -6,8 +7,8 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2 font-bold text-white">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange font-mono text-xs">SI</span>
-            SpecInspect
+            <Image src="/logo.png" alt="SpecInspect" width={28} height={28} className="rounded" />
+            <span className="text-lg">SpecInspect</span>
           </div>
           <p className="mt-3 text-sm">
             Construction Specification Intelligence. 30,000+ verified building material products.
