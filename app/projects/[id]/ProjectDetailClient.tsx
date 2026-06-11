@@ -42,7 +42,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
     }
   }
 
-  async function removeItem(productId: number) {
+  async function removeItem(productId: string) {
     if (!project) return;
     const prev = project;
     setProject({ ...project, items: (project.items ?? []).filter((i) => i.id !== productId) }); // optimistic

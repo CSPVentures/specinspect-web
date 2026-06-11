@@ -39,8 +39,8 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
 
   const specs = SPEC_FIELDS.filter((f) => hasValue(product[f.key]));
   const docs = [
-    { label: 'Technical Data Sheet (PDF)', href: product.tds_pdf_url },
-    { label: 'Source PDF', href: product.source_pdf_url },
+    { label: 'Technical Data Sheet (PDF)', href: product.tds_url },
+    { label: 'Source PDF', href: product.source_pdf },
     { label: 'Manufacturer page', href: product.source_url },
   ].filter((d) => hasValue(d.href));
 
@@ -98,13 +98,13 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
         )}
       </section>
 
-      {(product.substrates?.length ?? 0) > 0 && (
+      {product.substrate_compatibility && (
         <section className="mt-8">
           <h2 className="text-lg font-semibold text-navy dark:text-white">Compatible substrates</h2>
           <div className="mt-3 flex flex-wrap gap-2">
-            {product.substrates!.map((s) => (
-              <span key={s} className="rounded-full bg-rowalt px-3 py-1 text-sm dark:bg-white/10 dark:text-slate-300">
-                {s}
+            {product.substrate_compatibility.split(',').map((s) => (
+              <span key={s.trim()} className="rounded-full bg-rowalt px-3 py-1 text-sm dark:bg-white/10 dark:text-slate-300">
+                {s.trim()}
               </span>
             ))}
           </div>

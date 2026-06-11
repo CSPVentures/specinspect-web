@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import type { Product } from '@/lib/types';
 
 interface CompareItem {
-  id: number;
+  id: string;
   product_name: string;
   brand: string;
 }
@@ -12,9 +12,9 @@ interface CompareItem {
 interface CompareCtx {
   items: CompareItem[];
   add: (p: Product) => void;
-  remove: (id: number) => void;
+  remove: (id: string) => void;
   clear: () => void;
-  has: (id: number) => boolean;
+  has: (id: string) => boolean;
 }
 
 const Ctx = createContext<CompareCtx | null>(null);
@@ -51,11 +51,11 @@ export function CompareProvider({ children }: { children: React.ReactNode }) {
   );
 
   const remove = useCallback(
-    (id: number) => persist(items.filter((i) => i.id !== id)),
+    (id: string) => persist(items.filter((i) => i.id !== id)),
     [items, persist],
   );
   const clear = useCallback(() => persist([]), [persist]);
-  const has = useCallback((id: number) => items.some((i) => i.id === id), [items]);
+  const has = useCallback((id: string) => items.some((i) => i.id === id), [items]);
 
   return <Ctx.Provider value={{ items, add, remove, clear, has }}>{children}</Ctx.Provider>;
 }

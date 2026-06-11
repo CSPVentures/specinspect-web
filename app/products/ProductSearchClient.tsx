@@ -28,11 +28,11 @@ export default function ProductSearchClient() {
   const timer = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
-    api<{ categories: string[] } | string[]>('/categories')
-      .then((d) => setCategories(Array.isArray(d) ? d : d.categories ?? []))
+    api<{ categories: Array<{ category: string; product_count: number }> }>('/categories')
+      .then((d) => setCategories((d.categories ?? []).map((c) => c.category)))
       .catch(() => undefined);
-    api<{ brands: string[] } | string[]>('/brands')
-      .then((d) => setBrands(Array.isArray(d) ? d : d.brands ?? []))
+    api<{ brands: Array<{ brand: string; product_count: number }> }>('/brands')
+      .then((d) => setBrands((d.brands ?? []).map((b) => b.brand)))
       .catch(() => undefined);
   }, []);
 

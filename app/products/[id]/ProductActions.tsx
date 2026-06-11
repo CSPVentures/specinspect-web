@@ -22,7 +22,7 @@ export default function ProductActions({ product }: { product: Product }) {
       .catch(() => setAuthed(false));
   }, []);
 
-  async function saveTo(projectId: number, projectName: string) {
+  async function saveTo(projectId: string, projectName: string) {
     setBusy(true);
     setMessage('');
     try {

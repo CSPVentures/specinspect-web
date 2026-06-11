@@ -42,7 +42,7 @@ export default function ProjectsClient() {
     }
   }
 
-  async function remove(id: number) {
+  async function remove(id: string) {
     if (!confirm('Delete this project and its saved specs?')) return;
     const prev = projects;
     setProjects((p) => (p ?? []).filter((x) => x.id !== id)); // optimistic

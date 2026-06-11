@@ -6,7 +6,7 @@ export interface User {
 }
 
 export interface Product {
-  id: number;
+  id: string;
   product_name: string;
   brand: string;
   category: string;
@@ -17,9 +17,10 @@ export interface Product {
   voc_content?: string | null;
   coverage_rate?: string | null;
   cure_time?: string | null;
-  application_temp?: string | null;
+  application_temp_min?: string | null;
+  application_temp_max?: string | null;
   shelf_life?: string | null;
-  packaging?: string | null;
+  packaging_sizes?: string | null;
   mixing_ratio?: string | null;
   pot_life?: string | null;
   tack_time?: string | null;
@@ -27,10 +28,12 @@ export interface Product {
   substrate_compatibility?: string | null;
   certifications?: string | null;
   fire_rating?: string | null;
-  tds_pdf_url?: string | null;
-  source_pdf_url?: string | null;
+  tds_url?: string | null;
+  source_pdf?: string | null;
   source_url?: string | null;
-  substrates?: string[];
+  product_number?: string | null;
+  confidence_score?: string | null;
+  last_verified_date?: string | null;
 }
 
 export interface ProductSearchResponse {
@@ -42,7 +45,7 @@ export interface ProductSearchResponse {
 }
 
 export interface Project {
-  id: number;
+  id: string;
   name: string;
   description?: string | null;
   project_address?: string | null;
@@ -73,9 +76,10 @@ export const SPEC_FIELDS: Array<{ key: keyof Product; label: string }> = [
   { key: 'voc_content', label: 'VOC Content' },
   { key: 'coverage_rate', label: 'Coverage Rate' },
   { key: 'cure_time', label: 'Cure Time' },
-  { key: 'application_temp', label: 'Application Temp' },
+  { key: 'application_temp_min', label: 'Min Application Temp' },
+  { key: 'application_temp_max', label: 'Max Application Temp' },
   { key: 'shelf_life', label: 'Shelf Life' },
-  { key: 'packaging', label: 'Packaging' },
+  { key: 'packaging_sizes', label: 'Packaging' },
   { key: 'mixing_ratio', label: 'Mixing Ratio' },
   { key: 'pot_life', label: 'Pot Life' },
   { key: 'tack_time', label: 'Tack Time' },
