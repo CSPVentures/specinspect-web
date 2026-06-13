@@ -21,13 +21,13 @@ const PRO_FEATURES = [
   'Priority data review requests',
 ];
 
-const ENTERPRISE_FEATURES = [
+const TEAM_FEATURES = [
   'Everything in Pro',
-  'API access for integrations',
-  'Team management & multi-seat',
-  'SSO / provisioning',
-  'Dedicated onboarding & support',
-  'Custom data ingestion',
+  'Volume seat pricing (3–50 seats)',
+  'Team management dashboard',
+  'Shared project library',
+  'Admin seat management (add/remove anytime)',
+  'Centralized billing',
 ];
 
 const FAQ = [
@@ -49,18 +49,35 @@ const FAQ = [
   },
   {
     q: 'Do you offer team discounts?',
-    a: 'Contact sales@specinspect.com for teams of 5+.',
+    a: 'Yes! Team plans start at 3 seats with volume pricing. More seats = lower per-seat cost.',
   },
+  {
+    q: 'What is the launch promo price?',
+    a: 'For the first 60 days after launch, Pro is $12.99/mo or $99/yr — and you\'re grandfathered at that price forever.',
+  },
+];
+
+const TEAM_TIERS = [
+  { seats: '3–10', monthly: 12, annual: 99 },
+  { seats: '11–25', monthly: 10, annual: 85 },
+  { seats: '26–50', monthly: 8, annual: 69 },
 ];
 
 export default function PricingClient() {
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
   const [loading, setLoading] = useState(false);
 
+  // Launch promo active for first 60 days
+  const LAUNCH_PROMO = true;
+  const proMonthly = LAUNCH_PROMO ? 12.99 : 14.99;
+  const proAnnual = LAUNCH_PROMO ? 99 : 119;
+  const proAnnualMo = (proAnnual / 12).toFixed(2);
+  const annualSavings = proMonthly * 12 - proAnnual;
+
   async function handleUpgrade() {
     setLoading(true);
     try {
-      const price_id = billing === 'monthly' ? 'pro_monthly' : 'pro_annual';
+      const price_id = billing === 'monthly' ? 'specinspect_pro_monthly' : 'specinspect_pro_annual';
       const res = await fetch('/api/subscriptions/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -81,6 +98,11 @@ export default function PricingClient() {
         </div>
         <h1 className="text-4xl font-bold text-white">Simple, transparent pricing</h1>
         <p className="mt-3 text-subdued text-lg">Start free. Upgrade when the submittals start stacking up.</p>
+        {LAUNCH_PROMO && (
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-orange/40 bg-orange/10 px-4 py-2 text-sm font-medium text-orange">
+            🎉 Introductory Launch Price — grandfathered forever
+          </div>
+        )}
       </div>
 
       {/* Monthly/Annual Toggle */}
@@ -98,14 +120,14 @@ export default function PricingClient() {
           >
             Annual
             <span className={`text-xs font-normal ${billing === 'annual' ? 'text-navy-950' : 'text-green-400'}`}>
-              Save $58
+              Save ${annualSavings.toFixed(0)}
             </span>
           </button>
         </div>
       </div>
 
-      {/* Plans */}
-      <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-3 mb-20">
+      {/* Individual Plans */}
+      <div className="max-w-4xl mx-auto grid gap-6 lg:grid-cols-2 mb-16">
         {/* Free */}
         <div className="card flex flex-col p-7">
           <h2 className="text-xl font-bold text-white">Free</h2>
@@ -135,16 +157,21 @@ export default function PricingClient() {
           <h2 className="text-xl font-bold text-white">Pro</h2>
           <p className="mt-2 flex items-baseline gap-2 flex-wrap">
             <span className="text-4xl font-bold text-white">
-              {billing === 'monthly' ? '$29' : '$290'}
+              {billing === 'monthly' ? `$${proMonthly}` : `$${proAnnual}`}
             </span>
             <span className="text-sm text-subdued">
               {billing === 'monthly' ? '/month' : '/year'}
             </span>
             {billing === 'annual' && (
-              <span className="text-xs text-green-400 font-medium">Save $58</span>
+              <span className="text-xs text-green-400 font-medium">${proAnnualMo}/mo, save ${annualSavings.toFixed(0)}</span>
             )}
           </p>
-          <p className="mt-2 text-sm text-subdued">For contractors and specifiers who live in submittals.</p>
+          {LAUNCH_PROMO && (
+            <p className="mt-1 text-xs text-orange/80">
+              {billing === 'monthly' ? 'Regular $14.99/mo — launch price locked forever' : 'Regular $119/yr — launch price locked forever'}
+            </p>
+          )}
+          <p className="mt-2 text-sm text-subdued">For contractors and specifiers who live in submittals. 14-day free trial.</p>
           <ul className="mt-5 flex-1 space-y-2.5 text-sm">
             {PRO_FEATURES.map((f) => (
               <li key={f} className="flex items-start gap-2">
@@ -158,32 +185,45 @@ export default function PricingClient() {
             disabled={loading}
             className="btn-primary mt-6 w-full"
           >
-            {loading ? 'Loading…' : 'Start Pro'}
+            {loading ? 'Loading…' : 'Start Pro Free Trial'}
           </button>
         </div>
+      </div>
 
-        {/* Enterprise */}
-        <div className="card flex flex-col p-7">
-          <h2 className="text-xl font-bold text-white">Enterprise</h2>
-          <p className="mt-2">
-            <span className="text-4xl font-bold text-white">Custom</span>
-            <span className="ml-2 text-sm text-subdued">pricing</span>
-          </p>
-          <p className="mt-2 text-sm text-subdued">For firms that need SpecInspect inside their own systems.</p>
-          <ul className="mt-5 flex-1 space-y-2.5 text-sm">
-            {ENTERPRISE_FEATURES.map((f) => (
-              <li key={f} className="flex items-start gap-2">
-                <span className="mt-0.5 text-orange shrink-0" aria-hidden="true">✓</span>
-                <span className="text-body">{f}</span>
-              </li>
-            ))}
-          </ul>
-          <a
-            href="mailto:sales@specinspect.com"
-            className="btn-secondary mt-6 w-full text-center"
-          >
-            Contact Sales
-          </a>
+      {/* Team Plans */}
+      <div className="max-w-4xl mx-auto mb-20">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-white">Team Plans</h2>
+          <p className="mt-3 text-subdued">Volume pricing per seat. Everyone gets Pro features. Minimum 3 seats.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {TEAM_TIERS.map((tier) => (
+            <div key={tier.seats} className="card flex flex-col p-6">
+              <p className="font-mono text-xs uppercase tracking-widest text-orange">{tier.seats} seats</p>
+              <p className="mt-3 flex items-baseline gap-1">
+                <span className="text-3xl font-bold text-white">
+                  ${billing === 'monthly' ? tier.monthly : tier.annual}
+                </span>
+                <span className="text-sm text-subdued">
+                  /seat/{billing === 'monthly' ? 'mo' : 'yr'}
+                </span>
+              </p>
+              <ul className="mt-5 flex-1 space-y-2 text-sm">
+                {TEAM_FEATURES.map((f) => (
+                  <li key={f} className="flex items-start gap-2">
+                    <span className="mt-0.5 text-orange shrink-0" aria-hidden="true">✓</span>
+                    <span className="text-body">{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="mailto:sales@specinspect.com?subject=Team Plan — {tier.seats} seats"
+                className="btn-secondary mt-6 w-full text-center"
+              >
+                Contact Sales
+              </a>
+            </div>
+          ))}
         </div>
       </div>
 

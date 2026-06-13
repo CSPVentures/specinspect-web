@@ -97,7 +97,7 @@ export default function DashboardClient({
         <div className="card p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-orange/30">
           <div>
             <p className="font-semibold text-white">Unlock submittal PDFs, unlimited projects & more</p>
-            <p className="mt-1 text-sm text-subdued">Upgrade to Pro for $29/month — or $290/year.</p>
+            <p className="mt-1 text-sm text-subdued">Upgrade to Pro for $12.99/month — launch price, locked forever.</p>
           </div>
           <Link href="/pricing" className="btn-primary shrink-0">
             Upgrade to Pro
