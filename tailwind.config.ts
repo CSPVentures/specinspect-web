@@ -6,21 +6,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: { DEFAULT: '#1B2A4A', 800: '#16223C', 900: '#101A2E', 950: '#0B1322' },
-        orange: { DEFAULT: '#E87722', hover: '#D2691E', light: '#FFF3E8' },
-        body: '#2D3748',
-        subdued: '#718096',
-        lightbg: '#F7FAFC',
-        rowalt: '#EDF2F7',
-        divider: '#E2E8F0',
+        navy: {
+          DEFAULT: '#020817',
+          800: '#1E293B',
+          900: '#0F172A',
+          950: '#020817',
+        },
+        orange: {
+          DEFAULT: '#FBBF24',
+          hover: '#F59E0B',
+          light: '#FBBF2419',
+        },
+        body: '#E2E8F0',
+        subdued: '#94A3B8',
+        lightbg: '#0F172A',
+        rowalt: '#1E293B',
+        divider: '#1E293B',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       boxShadow: {
-        card: '0 1px 3px rgba(16,26,46,0.08), 0 1px 2px rgba(16,26,46,0.04)',
-        cardHover: '0 6px 16px rgba(16,26,46,0.12)',
+        card: '0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)',
+        cardHover: '0 6px 16px rgba(0,0,0,0.5)',
       },
     },
   },

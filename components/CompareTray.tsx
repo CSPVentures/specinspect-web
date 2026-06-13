@@ -11,14 +11,14 @@ export default function CompareTray() {
   if (items.length === 0 || pathname === '/compare') return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-divider bg-white/95 backdrop-blur dark:border-white/10 dark:bg-navy-900/95">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-divider bg-navy-900/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
         <span className="spec-label">Compare ({items.length}/4)</span>
         <div className="flex flex-1 flex-wrap gap-2">
           {items.map((i) => (
             <span
               key={i.id}
-              className="inline-flex items-center gap-1.5 rounded-full bg-orange-light px-3 py-1 text-sm text-navy dark:bg-white/10 dark:text-slate-200"
+              className="inline-flex items-center gap-1.5 rounded-full bg-rowalt px-3 py-1 text-sm text-body"
             >
               {i.product_name}
               <button

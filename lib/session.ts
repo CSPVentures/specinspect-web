@@ -12,7 +12,7 @@ export async function getSession(): Promise<User | null> {
   if (apiKey) headers['X-API-Key'] = apiKey;
 
   try {
-    const res = await fetch(`${API_BASE}/auth/session`, { headers, cache: 'no-store' });
+    const res = await fetch(`${API_BASE}/auth/me`, { headers, cache: 'no-store' });
     if (!res.ok) return null;
     const body = await res.json();
     return (body.user ?? body) as User;

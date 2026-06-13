@@ -46,18 +46,20 @@ export async function loginAction(_prev: { error?: string } | null, formData: Fo
 }
 
 export async function registerAction(_prev: { error?: string } | null, formData: FormData) {
-  const name = String(formData.get('name') ?? '').trim();
+  const firstName = String(formData.get('first_name') ?? '').trim();
+  const lastName = String(formData.get('last_name') ?? '').trim();
   const email = String(formData.get('email') ?? '').trim();
   const password = String(formData.get('password') ?? '');
   const confirm = String(formData.get('confirm') ?? '');
   const terms = formData.get('terms');
 
-  if (!name || !email || !password) return { error: 'Fill in every field.' };
+  if (!firstName || !email || !password) return { error: 'Fill in every field.' };
   if (password.length < 8) return { error: 'Password must be at least 8 characters.' };
   if (password !== confirm) return { error: 'Passwords do not match.' };
   if (!terms) return { error: 'Accept the terms of service to continue.' };
 
-  const result = await authRequest('/auth/register', { name, email, password });
+  const full_name = lastName ? `${firstName} ${lastName}` : firstName;
+  const result = await authRequest('/auth/register', { email, password, full_name });
   if ('error' in result) return { error: result.error };
 
   cookies().set({ ...COOKIE, value: result.token });
@@ -76,4 +78,18 @@ export async function logoutAction() {
   }
   cookies().delete('si_token');
   redirect('/login');
+}
+
+export async function deleteAccountAction() {
+  const token = cookies().get('si_token')?.value;
+  if (token) {
+    const headers: Record<string, string> = { Authorization: `Bearer ${token}` };
+    const apiKey = process.env.SPECINSPECT_API_KEY;
+    if (apiKey) headers['X-API-Key'] = apiKey;
+    await fetch(`${API_BASE}/auth/delete-account`, { method: 'DELETE', headers, cache: 'no-store' }).catch(
+      () => undefined,
+    );
+  }
+  cookies().delete('si_token');
+  redirect('/');
 }

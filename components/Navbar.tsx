@@ -3,9 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { User } from '@/lib/types';
-import ThemeToggle from './ThemeToggle';
 import { logoutAction } from '@/lib/auth-actions';
 
 export default function Navbar({ user }: { user: User | null }) {
@@ -13,6 +12,24 @@ export default function Navbar({ user }: { user: User | null }) {
   const router = useRouter();
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Close mobile menu on click outside
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
 
   function submitSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -34,8 +51,10 @@ export default function Navbar({ user }: { user: User | null }) {
         { href: '/pricing', label: 'Pricing' },
       ];
 
+  const firstName = user?.full_name?.split(' ')[0] ?? 'Account';
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md text-white">
+    <header ref={navRef} className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md text-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4">
         <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight shrink-0">
           <Image src="/logo.png" alt="SpecInspect" width={36} height={36} className="rounded-lg" priority />
@@ -75,14 +94,13 @@ export default function Navbar({ user }: { user: User | null }) {
               {l.label}
             </Link>
           ))}
-          <ThemeToggle />
           {user ? (
             <>
               <Link
                 href="/account"
                 className="ml-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:text-white"
               >
-                {user.name?.split(' ')[0] ?? 'Account'}
+                {firstName}
               </Link>
               <form action={logoutAction}>
                 <button className="rounded-lg px-3 py-2 text-sm text-slate-400 hover:text-white">
@@ -103,19 +121,25 @@ export default function Navbar({ user }: { user: User | null }) {
         </nav>
 
         <button
-          className="ml-auto rounded-lg p-2 md:hidden"
-          aria-label="Toggle menu"
+          className="ml-auto rounded-lg p-2 md:hidden text-slate-400 hover:text-white"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            {open ? <path d="M6 6l12 12M6 18 18 6" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
-          </svg>
+          {open ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-white/10 px-4 py-3 md:hidden">
+        <div className="md:hidden border-t border-white/10 px-4 py-3">
           <form onSubmit={submitSearch} className="mb-3">
             <input
               value={q}
@@ -127,28 +151,49 @@ export default function Navbar({ user }: { user: User | null }) {
           </form>
           <div className="flex flex-col gap-1">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-slate-300">
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                  pathname.startsWith(l.href) ? 'text-orange' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                }`}
+              >
                 {l.label}
               </Link>
             ))}
             {user ? (
               <>
-                <Link href="/account" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-slate-300">
+                <Link
+                  href="/account"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800"
+                >
                   Account
                 </Link>
                 <form action={logoutAction}>
-                  <button className="rounded-lg px-3 py-2 text-left text-sm text-slate-400">Sign out</button>
+                  <button className="w-full text-left rounded-lg px-3 py-2.5 text-sm text-slate-400 hover:text-white hover:bg-slate-800">
+                    Sign out
+                  </button>
                 </form>
               </>
             ) : (
-              <>
-                <Link href="/login" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-slate-300">
+              <div className="pt-2 border-t border-slate-800 mt-2 flex flex-col gap-2">
+                <Link
+                  href="/login"
+                  onClick={() => setOpen(false)}
+                  className="btn-secondary text-center text-sm"
+                >
                   Sign in
                 </Link>
-                <Link href="/register" onClick={() => setOpen(false)} className="btn-primary mt-1 text-sm">
-                  Get started free
+                <Link
+                  href="/register"
+                  onClick={() => setOpen(false)}
+                  className="btn-primary text-center text-sm"
+                >
+                  Get Started Free
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>

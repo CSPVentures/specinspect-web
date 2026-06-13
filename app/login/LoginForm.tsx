@@ -18,7 +18,7 @@ export default function LoginForm() {
   return (
     <form action={action} className="space-y-4">
       {state?.error && (
-        <p role="alert" className="rounded-lg bg-orange-light px-4 py-3 text-sm text-orange dark:bg-orange/15">
+        <p role="alert" className="rounded-lg bg-orange/15 px-4 py-3 text-sm text-orange">
           {state.error}
         </p>
       )}

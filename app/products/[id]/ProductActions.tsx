@@ -64,7 +64,7 @@ export default function ProductActions({ product }: { product: Product }) {
             Save to project
           </button>
           {saveOpen && (
-            <div className="absolute left-0 top-full z-20 mt-2 w-64 overflow-hidden rounded-xl border border-divider bg-white shadow-cardHover dark:border-white/10 dark:bg-navy-900">
+            <div className="absolute left-0 top-full z-20 mt-2 w-64 overflow-hidden rounded-xl border border-divider bg-navy-900 shadow-cardHover">
               {projects.length === 0 ? (
                 <p className="px-4 py-3 text-sm text-subdued">
                   No projects yet — create one on the Projects page first.
@@ -74,7 +74,7 @@ export default function ProductActions({ product }: { product: Product }) {
                   <button
                     key={p.id}
                     onClick={() => saveTo(p.id, p.name)}
-                    className="block w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-orange-light dark:hover:bg-white/10"
+                    className="block w-full px-4 py-2.5 text-left text-sm text-body transition-colors hover:bg-orange/10 hover:text-orange"
                   >
                     {p.name}
                   </button>

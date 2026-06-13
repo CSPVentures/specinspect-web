@@ -6,7 +6,7 @@ import { api } from '@/lib/api';
 import type { Product, Project } from '@/lib/types';
 import ProductCard from '@/components/ProductCard';
 
-export default function ProjectDetailClient({ id }: { id: string }) {
+export default function ProjectDetailClient({ id, isPro }: { id: string; isPro: boolean }) {
   const [project, setProject] = useState<Project | null>(null);
   const [error, setError] = useState('');
   const [editing, setEditing] = useState(false);
@@ -32,7 +32,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
   async function saveEdits() {
     if (!project) return;
     const prev = project;
-    setProject({ ...project, ...edit }); // optimistic
+    setProject({ ...project, ...edit });
     setEditing(false);
     try {
       await api(`/projects/${id}`, { method: 'PUT', body: JSON.stringify(edit) });
@@ -45,7 +45,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
   async function removeItem(productId: string) {
     if (!project) return;
     const prev = project;
-    setProject({ ...project, items: (project.items ?? []).filter((i) => i.id !== productId) }); // optimistic
+    setProject({ ...project, items: (project.items ?? []).filter((i) => i.id !== productId) });
     try {
       await api(`/projects/${id}/items/${productId}`, { method: 'DELETE' });
     } catch {
@@ -83,7 +83,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
   if (error && !project) {
     return (
       <div className="mx-auto max-w-md px-4 py-24 text-center">
-        <h1 className="text-xl font-bold text-navy dark:text-white">Project unavailable</h1>
+        <h1 className="text-xl font-bold text-white">Project unavailable</h1>
         <p className="mt-2 text-subdued">{error}</p>
         <Link href="/projects" className="btn-primary mt-6">Back to projects</Link>
       </div>
@@ -122,7 +122,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
             </div>
           ) : (
             <>
-              <h1 className="flex items-center gap-3 text-2xl font-bold text-navy dark:text-white">
+              <h1 className="flex items-center gap-3 text-2xl font-bold text-white">
                 {project.name}
                 <button
                   onClick={() => setEditing(true)}
@@ -139,28 +139,51 @@ export default function ProjectDetailClient({ id }: { id: string }) {
             </>
           )}
         </div>
-        <button
-          onClick={() => setPdfModal(true)}
-          disabled={items.length === 0}
-          className="btn-primary px-6 py-3 text-base"
-        >
-          Generate submittal PDF
-        </button>
+
+        {/* Submittal PDF button — Pro only */}
+        <div className="flex flex-col items-end gap-2">
+          {isPro ? (
+            <button
+              onClick={() => setPdfModal(true)}
+              disabled={items.length === 0}
+              className="btn-primary px-6 py-3 text-base"
+            >
+              {pdfBusy ? 'Generating PDF…' : 'Generate Submittal PDF'}
+            </button>
+          ) : (
+            <div className="text-right">
+              <button
+                disabled
+                className="btn-secondary px-6 py-3 text-base opacity-50 cursor-not-allowed"
+                aria-disabled="true"
+              >
+                Generate Submittal PDF
+              </button>
+              <p className="mt-1 text-xs text-subdued">
+                Pro feature —{' '}
+                <Link href="/pricing" className="text-orange hover:underline">Upgrade to generate submittals</Link>
+              </p>
+            </div>
+          )}
+        </div>
       </div>
 
       {error && <p className="mt-4 text-sm text-orange">{error}</p>}
 
       <section className="mt-8">
-        <h2 className="text-lg font-semibold text-navy dark:text-white">
-          Saved specs ({items.length})
-        </h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-lg font-semibold text-white">Saved specs ({items.length})</h2>
+          <Link href="/products" className="btn-secondary text-sm px-4 py-2">
+            + Add Products
+          </Link>
+        </div>
         {items.length === 0 ? (
-          <div className="card mt-3 p-8 text-center">
+          <div className="card p-8 text-center">
             <p className="text-subdued">No specs saved yet. Find products and save them here.</p>
             <Link href="/products" className="btn-primary mt-4">Search products</Link>
           </div>
         ) : (
-          <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((p) => (
               <ProductCard key={p.id} product={p} onRemove={() => removeItem(p.id)} />
             ))}
@@ -168,16 +191,14 @@ export default function ProjectDetailClient({ id }: { id: string }) {
         )}
       </section>
 
-      {pdfModal && (
+      {isPro && pdfModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-navy-950/60 p-4"
           role="dialog" aria-modal="true" aria-labelledby="pdf-title"
           onClick={(e) => e.target === e.currentTarget && setPdfModal(false)}
         >
           <form onSubmit={generatePdf} className="card w-full max-w-md p-6">
-            <h2 id="pdf-title" className="text-lg font-semibold text-navy dark:text-white">
-              Submittal details
-            </h2>
+            <h2 id="pdf-title" className="text-lg font-semibold text-white">Submittal details</h2>
             <p className="mt-1 text-sm text-subdued">All fields optional — leave blank to skip.</p>
             {pdfError && <p className="mt-2 text-sm text-orange">{pdfError}</p>}
             <div className="mt-4 space-y-4">
@@ -204,9 +225,7 @@ export default function ProjectDetailClient({ id }: { id: string }) {
               </div>
             </div>
             <div className="mt-5 flex justify-end gap-3">
-              <button type="button" onClick={() => setPdfModal(false)} className="btn-secondary">
-                Cancel
-              </button>
+              <button type="button" onClick={() => setPdfModal(false)} className="btn-secondary">Cancel</button>
               <button className="btn-primary" disabled={pdfBusy}>
                 {pdfBusy ? 'Generating…' : 'Download PDF'}
               </button>

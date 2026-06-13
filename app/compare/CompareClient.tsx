@@ -39,7 +39,7 @@ export default function CompareClient() {
   if (items.length < 2) {
     return (
       <div className="mx-auto max-w-md px-4 py-24 text-center">
-        <h1 className="text-2xl font-bold text-navy dark:text-white">Compare products</h1>
+        <h1 className="text-2xl font-bold text-white">Compare products</h1>
         <p className="mt-2 text-subdued">
           Add 2–4 products to the compare tray from search results or product pages, then come back here.
         </p>
@@ -57,7 +57,7 @@ export default function CompareClient() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
-      <h1 className="text-2xl font-bold text-navy dark:text-white">Compare products</h1>
+      <h1 className="text-2xl font-bold text-white">Compare products</h1>
       <p className="mt-1 text-sm text-subdued">Differences are highlighted in orange.</p>
       {loading && <p className="mt-4 text-subdued">Loading specs…</p>}
 
@@ -72,7 +72,7 @@ export default function CompareClient() {
                 <th key={p.id} className="card rounded-b-none p-4 text-left align-top">
                   <div className="flex items-start justify-between gap-2">
                     <Link href={`/products/${p.id}`} className="min-w-0">
-                      <span className="flex items-center gap-1.5 font-semibold text-navy hover:text-orange dark:text-white">
+                      <span className="flex items-center gap-1.5 font-semibold text-white hover:text-orange">
                         <span className="truncate">{p.product_name}</span>
                         {p.verified !== false && <VerifiedBadge />}
                       </span>
@@ -96,17 +96,17 @@ export default function CompareClient() {
             {rows.map((f, i) => {
               const highlight = differs(f.key);
               return (
-                <tr key={String(f.key)} className={i % 2 === 1 ? 'bg-rowalt dark:bg-white/5' : ''}>
+                <tr key={String(f.key)} className={i % 2 === 1 ? 'bg-rowalt' : ''}>
                   <th scope="row" className="spec-label p-3 text-left align-top font-normal">
                     {f.label}
                   </th>
                   {products.map((p) => (
                     <td
                       key={p.id}
-                      className={`border-l border-divider p-3 align-top dark:border-white/10 ${
+                      className={`border-l border-divider p-3 align-top ${
                         highlight
-                          ? 'bg-orange-light font-medium text-navy dark:bg-orange/10 dark:text-orange'
-                          : 'text-body dark:text-slate-300'
+                          ? 'bg-orange/10 font-medium text-orange'
+                          : 'text-body'
                       }`}
                     >
                       {hasValue(p[f.key]) ? String(p[f.key]) : <span className="text-subdued">—</span>}

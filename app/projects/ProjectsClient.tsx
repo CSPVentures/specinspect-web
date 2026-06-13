@@ -57,7 +57,7 @@ export default function ProjectsClient() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-navy dark:text-white">Projects</h1>
+        <h1 className="text-2xl font-bold text-white">Projects</h1>
         <button onClick={() => setModalOpen(true)} className="btn-primary">
           + New project
         </button>
@@ -67,7 +67,7 @@ export default function ProjectsClient() {
       {projects === null && !error && <p className="mt-6 text-subdued">Loading projects…</p>}
       {projects?.length === 0 && (
         <div className="card mt-6 p-10 text-center">
-          <h2 className="font-semibold text-navy dark:text-white">No projects yet</h2>
+          <h2 className="font-semibold text-white">No projects yet</h2>
           <p className="mt-1 text-sm text-subdued">
             Create a project, then save specs to it from any product page.
           </p>
@@ -81,7 +81,7 @@ export default function ProjectsClient() {
         {(projects ?? []).map((p) => (
           <div key={p.id} className="card group relative p-5 hover:shadow-cardHover">
             <Link href={`/projects/${p.id}`} className="block">
-              <h2 className="pr-8 font-semibold text-navy group-hover:text-orange dark:text-white">
+              <h2 className="pr-8 font-semibold text-white group-hover:text-orange">
                 {p.name}
               </h2>
               {p.project_address && (
@@ -114,7 +114,7 @@ export default function ProjectsClient() {
           onClick={(e) => e.target === e.currentTarget && setModalOpen(false)}
         >
           <form onSubmit={create} className="card w-full max-w-md p-6">
-            <h2 id="new-project-title" className="text-lg font-semibold text-navy dark:text-white">
+            <h2 id="new-project-title" className="text-lg font-semibold text-white">
               New project
             </h2>
             {createError && <p className="mt-2 text-sm text-orange">{createError}</p>}
