@@ -11,7 +11,7 @@
     @apply bg-navy text-body antialiased;
   }
   :focus-visible {
-    @apply outline-none ring-2 ring-orange ring-offset-2 ring-offset-navy;
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-navy;
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -23,16 +23,16 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-orange px-5 py-2.5 font-semibold text-navy-950 transition-colors hover:bg-orange-hover disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gold px-5 py-2.5 font-semibold text-navy-950 transition-colors hover:bg-gold-hover disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-divider bg-navy-900 px-5 py-2.5 font-semibold text-body transition-colors hover:border-orange hover:text-orange;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-divider bg-surface px-5 py-2.5 font-semibold text-body transition-colors hover:border-gold hover:text-gold;
   }
   .card {
-    @apply rounded-xl border border-divider bg-navy-900 shadow-card transition-shadow;
+    @apply rounded-xl border border-divider bg-surface shadow-card transition-shadow;
   }
   .input {
-    @apply w-full rounded-lg border border-divider bg-navy-800 px-4 py-2.5 text-body placeholder:text-subdued focus:border-orange focus:outline-none;
+    @apply w-full rounded-lg border border-divider bg-surface-muted px-4 py-2.5 text-body placeholder:text-subdued focus:border-gold focus:outline-none;
   }
   .label {
     @apply mb-1.5 block text-sm font-medium text-body;
