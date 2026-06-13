@@ -94,10 +94,10 @@ export default function DashboardClient({
 
       {/* Upgrade CTA for free users */}
       {!isPro && (
-        <div className="card p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-orange/30">
+        <div className="card p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-gold/30">
           <div>
             <p className="font-semibold text-white">Unlock submittal PDFs, unlimited projects & more</p>
-            <p className="mt-1 text-sm text-subdued">Upgrade to Pro for $12.99/month — launch price, locked forever.</p>
+            <p className="mt-1 text-sm text-subdued">Upgrade to Pro for $12.99/month.</p>
           </div>
           <Link href="/pricing" className="btn-primary shrink-0">
             Upgrade to Pro
@@ -154,7 +154,7 @@ export default function DashboardClient({
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-white">Recent projects</h2>
-          <Link href="/projects" className="text-sm font-medium text-orange hover:underline">
+          <Link href="/projects" className="text-sm font-medium text-gold hover:underline">
             View all →
           </Link>
         </div>

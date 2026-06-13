@@ -95,7 +95,7 @@ export default function ProjectDetailClient({ id, isPro }: { id: string; isPro: 
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
-      <Link href="/projects" className="text-sm text-subdued hover:text-orange">← All projects</Link>
+      <Link href="/projects" className="text-sm text-subdued hover:text-gold">← All projects</Link>
 
       <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
@@ -127,7 +127,7 @@ export default function ProjectDetailClient({ id, isPro }: { id: string; isPro: 
                 <button
                   onClick={() => setEditing(true)}
                   aria-label="Edit project details"
-                  className="rounded-lg p-1.5 text-subdued hover:text-orange"
+                  className="rounded-lg p-1.5 text-subdued hover:text-gold"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                     <path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z" />
@@ -161,14 +161,14 @@ export default function ProjectDetailClient({ id, isPro }: { id: string; isPro: 
               </button>
               <p className="mt-1 text-xs text-subdued">
                 Pro feature —{' '}
-                <Link href="/pricing" className="text-orange hover:underline">Upgrade to generate submittals</Link>
+                <Link href="/pricing" className="text-gold hover:underline">Upgrade to generate submittals</Link>
               </p>
             </div>
           )}
         </div>
       </div>
 
-      {error && <p className="mt-4 text-sm text-orange">{error}</p>}
+      {error && <p className="mt-4 text-sm text-gold">{error}</p>}
 
       <section className="mt-8">
         <div className="flex items-center justify-between mb-3">
@@ -200,7 +200,7 @@ export default function ProjectDetailClient({ id, isPro }: { id: string; isPro: 
           <form onSubmit={generatePdf} className="card w-full max-w-md p-6">
             <h2 id="pdf-title" className="text-lg font-semibold text-white">Submittal details</h2>
             <p className="mt-1 text-sm text-subdued">All fields optional — leave blank to skip.</p>
-            {pdfError && <p className="mt-2 text-sm text-orange">{pdfError}</p>}
+            {pdfError && <p className="mt-2 text-sm text-gold">{pdfError}</p>}
             <div className="mt-4 space-y-4">
               <div>
                 <label htmlFor="s-to" className="label">Submitted to</label>

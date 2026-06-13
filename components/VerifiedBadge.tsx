@@ -1,7 +1,7 @@
 export default function VerifiedBadge({ withLabel = false }: { withLabel?: boolean }) {
   return (
     <span
-      className="inline-flex items-center gap-1 text-orange"
+      className="inline-flex items-center gap-1 text-gold"
       title="Verified product data"
       aria-label="Verified"
     >

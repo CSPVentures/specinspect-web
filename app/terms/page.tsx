@@ -21,7 +21,7 @@ export default function TermsPage() {
           <li>You must be at least 13 years old to create an account.</li>
           <li>One account per person. Accounts are non-transferable.</li>
           <li>You are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs under your account.</li>
-          <li>Notify us immediately at <a href="mailto:legal@specinspect.com" className="text-orange hover:underline">legal@specinspect.com</a> if you suspect unauthorized access to your account.</li>
+          <li>Notify us immediately at <a href="mailto:legal@specinspect.com" className="text-gold hover:underline">legal@specinspect.com</a> if you suspect unauthorized access to your account.</li>
         </ul>
       </section>
 
@@ -40,7 +40,7 @@ export default function TermsPage() {
       <section>
         <h2>4. Subscription Terms</h2>
         <ul>
-          <li>The Pro plan is available for <strong>$14.99/month</strong> or <strong>$119/year</strong>, billed in advance. Introductory launch pricing of <strong>$12.99/month</strong> or <strong>$99/year</strong> is available for the first 60 days and grandfathered for the life of the subscription.</li>
+          <li>The Pro plan is available for <strong>$14.99/month</strong> or <strong>$119/year</strong>, billed in advance. Introductory launch pricing of <strong>$12.99/month</strong> or <strong>$99/year</strong> is available for the first 60 days.</li>
           <li>Subscriptions auto-renew unless cancelled before the renewal date.</li>
           <li>You may cancel your subscription at any time via Account settings. Cancellation takes effect at the end of the current billing period — access continues until then.</li>
           <li>We do not offer refunds for partial billing periods.</li>
@@ -105,7 +105,7 @@ export default function TermsPage() {
         <h2>10. Contact</h2>
         <p>
           Legal inquiries:{' '}
-          <a href="mailto:legal@specinspect.com" className="text-orange hover:underline">legal@specinspect.com</a>
+          <a href="mailto:legal@specinspect.com" className="text-gold hover:underline">legal@specinspect.com</a>
         </p>
       </section>
     </StaticPage>

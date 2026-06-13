@@ -72,7 +72,7 @@ export default function CompareClient() {
                 <th key={p.id} className="card rounded-b-none p-4 text-left align-top">
                   <div className="flex items-start justify-between gap-2">
                     <Link href={`/products/${p.id}`} className="min-w-0">
-                      <span className="flex items-center gap-1.5 font-semibold text-white hover:text-orange">
+                      <span className="flex items-center gap-1.5 font-semibold text-white hover:text-gold">
                         <span className="truncate">{p.product_name}</span>
                         {p.verified !== false && <VerifiedBadge />}
                       </span>
@@ -83,7 +83,7 @@ export default function CompareClient() {
                     <button
                       onClick={() => remove(p.id)}
                       aria-label={`Remove ${p.product_name} from comparison`}
-                      className="text-subdued hover:text-orange"
+                      className="text-subdued hover:text-gold"
                     >
                       ×
                     </button>
@@ -105,7 +105,7 @@ export default function CompareClient() {
                       key={p.id}
                       className={`border-l border-divider p-3 align-top ${
                         highlight
-                          ? 'bg-orange/10 font-medium text-orange'
+                          ? 'bg-gold/10 font-medium text-gold'
                           : 'text-body'
                       }`}
                     >

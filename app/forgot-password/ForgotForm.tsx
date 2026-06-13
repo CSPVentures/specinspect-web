@@ -39,7 +39,7 @@ export default function ForgotForm() {
 
   return (
     <form onSubmit={submit} className="space-y-4">
-      {error && <p role="alert" className="text-sm text-orange">{error}</p>}
+      {error && <p role="alert" className="text-sm text-gold">{error}</p>}
       <div>
         <label htmlFor="email" className="label">Email</label>
         <input
@@ -52,7 +52,7 @@ export default function ForgotForm() {
         {status === 'sending' ? 'Sending…' : 'Send reset link'}
       </button>
       <p className="text-center text-sm text-subdued">
-        Remembered it? <Link href="/login" className="font-medium text-orange hover:underline">Sign in</Link>
+        Remembered it? <Link href="/login" className="font-medium text-gold hover:underline">Sign in</Link>
       </p>
     </form>
   );

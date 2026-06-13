@@ -74,7 +74,7 @@ export default function ProductActions({ product }: { product: Product }) {
                   <button
                     key={p.id}
                     onClick={() => saveTo(p.id, p.name)}
-                    className="block w-full px-4 py-2.5 text-left text-sm text-body transition-colors hover:bg-orange/10 hover:text-orange"
+                    className="block w-full px-4 py-2.5 text-left text-sm text-body transition-colors hover:bg-gold/10 hover:text-gold"
                   >
                     {p.name}
                   </button>
@@ -95,7 +95,7 @@ export default function ProductActions({ product }: { product: Product }) {
         </button>
       </div>
       {message && (
-        <p role="status" className="mt-3 text-sm font-medium text-orange">{message}</p>
+        <p role="status" className="mt-3 text-sm font-medium text-gold">{message}</p>
       )}
     </div>
   );

@@ -45,7 +45,7 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
     <div className="mx-auto max-w-4xl px-4 py-10">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="font-semibold text-orange">{product.brand}</p>
+          <p className="font-semibold text-gold">{product.brand}</p>
           <h1 className="mt-1 flex items-center gap-2 text-3xl font-bold text-white">
             {product.product_name}
             {product.verified !== false && <VerifiedBadge withLabel />}

@@ -194,7 +194,7 @@ function FilterPill({ active, onClick, label }: { active: boolean; onClick: () =
       onClick={onClick}
       className={`rounded-full px-3 py-1.5 text-left text-sm transition-colors lg:rounded-lg ${
         active
-          ? 'bg-orange/15 font-semibold text-orange'
+          ? 'bg-gold/15 font-semibold text-gold'
           : 'text-body hover:bg-rowalt'
       }`}
     >

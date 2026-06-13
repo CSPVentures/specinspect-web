@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           <li>
             <strong>Stripe</strong> — payment processing for Pro subscriptions.
             Stripe&apos;s privacy policy is available at{' '}
-            <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="text-orange hover:underline">stripe.com/privacy</a>.
+            <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">stripe.com/privacy</a>.
           </li>
           <li>
             <strong>Cloudflare</strong> — CDN and DDoS protection. Traffic routes through Cloudflare&apos;s network.
@@ -85,7 +85,7 @@ export default function PrivacyPage() {
         <ul>
           <li><strong>Access:</strong> View your account information on the Account page.</li>
           <li><strong>Deletion:</strong> Delete your account in Account settings — this removes your data within 30 days.</li>
-          <li><strong>Correction:</strong> Contact <a href="mailto:privacy@specinspect.com" className="text-orange hover:underline">privacy@specinspect.com</a> to correct any inaccurate data.</li>
+          <li><strong>Correction:</strong> Contact <a href="mailto:privacy@specinspect.com" className="text-gold hover:underline">privacy@specinspect.com</a> to correct any inaccurate data.</li>
           <li><strong>Portability:</strong> Contact us to request an export of your account data.</li>
         </ul>
       </section>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
         <h2>10. Contact</h2>
         <p>
           Questions or requests regarding this policy:{' '}
-          <a href="mailto:privacy@specinspect.com" className="text-orange hover:underline">privacy@specinspect.com</a>
+          <a href="mailto:privacy@specinspect.com" className="text-gold hover:underline">privacy@specinspect.com</a>
         </p>
       </section>
     </StaticPage>

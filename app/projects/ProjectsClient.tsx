@@ -63,7 +63,7 @@ export default function ProjectsClient() {
         </button>
       </div>
 
-      {error && <p className="mt-4 text-sm text-orange">{error}</p>}
+      {error && <p className="mt-4 text-sm text-gold">{error}</p>}
       {projects === null && !error && <p className="mt-6 text-subdued">Loading projects…</p>}
       {projects?.length === 0 && (
         <div className="card mt-6 p-10 text-center">
@@ -81,7 +81,7 @@ export default function ProjectsClient() {
         {(projects ?? []).map((p) => (
           <div key={p.id} className="card group relative p-5 hover:shadow-cardHover">
             <Link href={`/projects/${p.id}`} className="block">
-              <h2 className="pr-8 font-semibold text-white group-hover:text-orange">
+              <h2 className="pr-8 font-semibold text-white group-hover:text-gold">
                 {p.name}
               </h2>
               {p.project_address && (
@@ -95,7 +95,7 @@ export default function ProjectsClient() {
             <button
               onClick={() => remove(p.id)}
               aria-label={`Delete ${p.name}`}
-              className="absolute right-4 top-4 rounded-lg p-1.5 text-subdued opacity-0 transition-opacity hover:text-orange focus-visible:opacity-100 group-hover:opacity-100"
+              className="absolute right-4 top-4 rounded-lg p-1.5 text-subdued opacity-0 transition-opacity hover:text-gold focus-visible:opacity-100 group-hover:opacity-100"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M3 6h18M8 6V4h8v2m-9 0 1 14h8l1-14" />
@@ -117,7 +117,7 @@ export default function ProjectsClient() {
             <h2 id="new-project-title" className="text-lg font-semibold text-white">
               New project
             </h2>
-            {createError && <p className="mt-2 text-sm text-orange">{createError}</p>}
+            {createError && <p className="mt-2 text-sm text-gold">{createError}</p>}
             <div className="mt-4 space-y-4">
               <div>
                 <label htmlFor="p-name" className="label">Project name</label>

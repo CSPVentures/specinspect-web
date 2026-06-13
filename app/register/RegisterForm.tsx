@@ -18,7 +18,7 @@ export default function RegisterForm() {
   return (
     <form action={action} className="space-y-4">
       {state?.error && (
-        <p role="alert" className="rounded-lg bg-orange/15 px-4 py-3 text-sm text-orange">
+        <p role="alert" className="rounded-lg bg-gold/15 px-4 py-3 text-sm text-gold">
           {state.error}
         </p>
       )}
@@ -49,14 +49,14 @@ export default function RegisterForm() {
         <input type="checkbox" name="terms" required className="mt-0.5 accent-[#FBBF24]" />
         <span>
           I agree to the{' '}
-          <Link href="/terms" className="text-orange hover:underline">Terms of Service</Link> and{' '}
-          <Link href="/privacy" className="text-orange hover:underline">Privacy Policy</Link>.
+          <Link href="/terms" className="text-gold hover:underline">Terms of Service</Link> and{' '}
+          <Link href="/privacy" className="text-gold hover:underline">Privacy Policy</Link>.
         </span>
       </label>
       <Submit />
       <p className="text-center text-sm text-subdued">
         Already have an account?{' '}
-        <Link href="/login" className="font-medium text-orange hover:underline">Sign in</Link>
+        <Link href="/login" className="font-medium text-gold hover:underline">Sign in</Link>
       </p>
     </form>
   );

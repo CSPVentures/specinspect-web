@@ -77,7 +77,7 @@ export default function Navbar({ user }: { user: User | null }) {
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search 30,000+ products…"
               aria-label="Search products"
-              className="w-full rounded-lg border border-white/15 bg-white/10 py-2 pl-9 pr-3 text-sm placeholder:text-slate-400 focus:border-orange focus:outline-none"
+              className="w-full rounded-lg border border-white/15 bg-white/10 py-2 pl-9 pr-3 text-sm placeholder:text-slate-400 focus:border-gold focus:outline-none"
             />
           </div>
         </form>
@@ -88,7 +88,7 @@ export default function Navbar({ user }: { user: User | null }) {
               key={l.href}
               href={l.href}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                pathname.startsWith(l.href) ? 'text-orange' : 'text-slate-300 hover:text-white'
+                pathname.startsWith(l.href) ? 'text-gold' : 'text-slate-300 hover:text-white'
               }`}
             >
               {l.label}
@@ -156,7 +156,7 @@ export default function Navbar({ user }: { user: User | null }) {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  pathname.startsWith(l.href) ? 'text-orange' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                  pathname.startsWith(l.href) ? 'text-gold' : 'text-slate-300 hover:text-white hover:bg-slate-800'
                 }`}
               >
                 {l.label}

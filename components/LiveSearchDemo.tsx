@@ -51,7 +51,7 @@ export default function LiveSearchDemo() {
           onChange={(e) => setQ(e.target.value)}
           placeholder="Try “TPO membrane” or “polyurethane sealant”…"
           aria-label="Search the product database"
-          className="w-full rounded-xl border border-white/15 bg-white/10 py-4 pl-12 pr-4 text-lg text-white placeholder:text-slate-400 backdrop-blur focus:border-orange"
+          className="w-full rounded-xl border border-white/15 bg-white/10 py-4 pl-12 pr-4 text-lg text-white placeholder:text-slate-400 backdrop-blur focus:border-gold"
         />
         {loading && (
           <span className="absolute right-4 top-1/2 -translate-y-1/2 font-mono text-xs text-slate-400">
@@ -78,7 +78,7 @@ export default function LiveSearchDemo() {
           {results.length > 0 && (
             <Link
               href={`/products?search=${encodeURIComponent(q)}`}
-              className="block px-4 py-3 text-center text-sm font-semibold text-orange hover:bg-white/5"
+              className="block px-4 py-3 text-center text-sm font-semibold text-gold hover:bg-white/5"
             >
               See all results →
             </Link>

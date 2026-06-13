@@ -18,7 +18,7 @@ export default function LoginForm() {
   return (
     <form action={action} className="space-y-4">
       {state?.error && (
-        <p role="alert" className="rounded-lg bg-orange/15 px-4 py-3 text-sm text-orange">
+        <p role="alert" className="rounded-lg bg-gold/15 px-4 py-3 text-sm text-gold">
           {state.error}
         </p>
       )}
@@ -29,7 +29,7 @@ export default function LoginForm() {
       <div>
         <div className="flex items-center justify-between">
           <label htmlFor="password" className="label">Password</label>
-          <Link href="/forgot-password" className="text-xs font-medium text-orange hover:underline">
+          <Link href="/forgot-password" className="text-xs font-medium text-gold hover:underline">
             Forgot password?
           </Link>
         </div>
@@ -38,7 +38,7 @@ export default function LoginForm() {
       <Submit />
       <p className="text-center text-sm text-subdued">
         New to SpecInspect?{' '}
-        <Link href="/register" className="font-medium text-orange hover:underline">Create an account</Link>
+        <Link href="/register" className="font-medium text-gold hover:underline">Create an account</Link>
       </p>
     </form>
   );

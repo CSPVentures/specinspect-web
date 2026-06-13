@@ -53,7 +53,7 @@ const FAQ = [
   },
   {
     q: 'What is the launch promo price?',
-    a: 'For the first 60 days after launch, Pro is $12.99/mo or $99/yr — and you\'re grandfathered at that price forever.',
+    a: 'For the first 60 days after launch, Pro is $12.99/mo or $99/yr.',
   },
 ];
 
@@ -99,8 +99,8 @@ export default function PricingClient() {
         <h1 className="text-4xl font-bold text-white">Simple, transparent pricing</h1>
         <p className="mt-3 text-subdued text-lg">Start free. Upgrade when the submittals start stacking up.</p>
         {LAUNCH_PROMO && (
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-orange/40 bg-orange/10 px-4 py-2 text-sm font-medium text-orange">
-            🎉 Introductory Launch Price — grandfathered forever
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2 text-sm font-medium text-gold">
+            🎉 Introductory Launch Pricing
           </div>
         )}
       </div>
@@ -110,13 +110,13 @@ export default function PricingClient() {
         <div className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-navy-900 p-1">
           <button
             onClick={() => setBilling('monthly')}
-            className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors ${billing === 'monthly' ? 'bg-orange text-navy-950' : 'text-slate-300 hover:text-white'}`}
+            className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors ${billing === 'monthly' ? 'bg-gold text-navy-950' : 'text-slate-300 hover:text-white'}`}
           >
             Monthly
           </button>
           <button
             onClick={() => setBilling('annual')}
-            className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${billing === 'annual' ? 'bg-orange text-navy-950' : 'text-slate-300 hover:text-white'}`}
+            className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors flex items-center gap-2 ${billing === 'annual' ? 'bg-gold text-navy-950' : 'text-slate-300 hover:text-white'}`}
           >
             Annual
             <span className={`text-xs font-normal ${billing === 'annual' ? 'text-navy-950' : 'text-green-400'}`}>
@@ -139,7 +139,7 @@ export default function PricingClient() {
           <ul className="mt-5 flex-1 space-y-2.5 text-sm">
             {FREE_FEATURES.map((f) => (
               <li key={f} className="flex items-start gap-2">
-                <span className="mt-0.5 text-orange shrink-0" aria-hidden="true">✓</span>
+                <span className="mt-0.5 text-gold shrink-0" aria-hidden="true">✓</span>
                 <span className="text-body">{f}</span>
               </li>
             ))}
@@ -150,8 +150,8 @@ export default function PricingClient() {
         </div>
 
         {/* Pro */}
-        <div className="card flex flex-col p-7 border-2 border-orange shadow-cardHover">
-          <span className="mb-3 self-start rounded-full bg-orange px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-navy-950">
+        <div className="card flex flex-col p-7 border-2 border-gold shadow-cardHover">
+          <span className="mb-3 self-start rounded-full bg-gold px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-navy-950">
             Most Popular
           </span>
           <h2 className="text-xl font-bold text-white">Pro</h2>
@@ -167,15 +167,15 @@ export default function PricingClient() {
             )}
           </p>
           {LAUNCH_PROMO && (
-            <p className="mt-1 text-xs text-orange/80">
-              {billing === 'monthly' ? 'Regular $14.99/mo — launch price locked forever' : 'Regular $119/yr — launch price locked forever'}
+            <p className="mt-1 text-xs text-gold/80">
+              {billing === 'monthly' ? 'Regular $14.99/mo' : 'Regular $119/yr'}
             </p>
           )}
           <p className="mt-2 text-sm text-subdued">For contractors and specifiers who live in submittals. 14-day free trial.</p>
           <ul className="mt-5 flex-1 space-y-2.5 text-sm">
             {PRO_FEATURES.map((f) => (
               <li key={f} className="flex items-start gap-2">
-                <span className="mt-0.5 text-orange shrink-0" aria-hidden="true">✓</span>
+                <span className="mt-0.5 text-gold shrink-0" aria-hidden="true">✓</span>
                 <span className="text-body">{f}</span>
               </li>
             ))}
@@ -199,7 +199,7 @@ export default function PricingClient() {
         <div className="grid gap-6 md:grid-cols-3">
           {TEAM_TIERS.map((tier) => (
             <div key={tier.seats} className="card flex flex-col p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-orange">{tier.seats} seats</p>
+              <p className="font-mono text-xs uppercase tracking-widest text-gold">{tier.seats} seats</p>
               <p className="mt-3 flex items-baseline gap-1">
                 <span className="text-3xl font-bold text-white">
                   ${billing === 'monthly' ? tier.monthly : tier.annual}
@@ -211,7 +211,7 @@ export default function PricingClient() {
               <ul className="mt-5 flex-1 space-y-2 text-sm">
                 {TEAM_FEATURES.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-orange shrink-0" aria-hidden="true">✓</span>
+                    <span className="mt-0.5 text-gold shrink-0" aria-hidden="true">✓</span>
                     <span className="text-body">{f}</span>
                   </li>
                 ))}

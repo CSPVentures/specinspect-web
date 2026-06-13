@@ -24,14 +24,14 @@ export default function CompareTray() {
               <button
                 onClick={() => remove(i.id)}
                 aria-label={`Remove ${i.product_name} from compare`}
-                className="text-subdued hover:text-orange"
+                className="text-subdued hover:text-gold"
               >
                 ×
               </button>
             </span>
           ))}
         </div>
-        <button onClick={clear} className="text-sm text-subdued hover:text-orange">
+        <button onClick={clear} className="text-sm text-subdued hover:text-gold">
           Clear
         </button>
         <Link

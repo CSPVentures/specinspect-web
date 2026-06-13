@@ -58,7 +58,7 @@ export default function AccessibilityPage() {
         <h2>5. Feedback</h2>
         <p>
           If you encounter an accessibility barrier anywhere in SpecInspect, please contact us at{' '}
-          <a href="mailto:accessibility@specinspect.com" className="text-orange hover:underline">
+          <a href="mailto:accessibility@specinspect.com" className="text-gold hover:underline">
             accessibility@specinspect.com
           </a>
           . Please describe the barrier, the page where you encountered it, and the assistive technology you

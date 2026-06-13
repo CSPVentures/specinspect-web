@@ -137,7 +137,7 @@ export default function WeatherClient() {
                   key={p.id}
                   type="button"
                   onClick={() => selectProduct(p)}
-                  className="block w-full px-4 py-3 text-left text-sm hover:bg-orange/10 hover:text-orange transition-colors"
+                  className="block w-full px-4 py-3 text-left text-sm hover:bg-gold/10 hover:text-gold transition-colors"
                 >
                   <span className="font-medium text-white">{p.product_name}</span>
                   {p.brand && <span className="ml-2 text-subdued">{p.brand}</span>}
@@ -179,7 +179,7 @@ export default function WeatherClient() {
           )}
         </div>
 
-        {error && <p className="text-sm text-orange">{error}</p>}
+        {error && <p className="text-sm text-gold">{error}</p>}
 
         <button
           type="submit"

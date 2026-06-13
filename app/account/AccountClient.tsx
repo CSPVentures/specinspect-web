@@ -177,7 +177,7 @@ export default function AccountClient({
               className="input"
             />
           </div>
-          {pwError && <p className="text-sm text-orange">{pwError}</p>}
+          {pwError && <p className="text-sm text-gold">{pwError}</p>}
           <button type="submit" disabled={pwStatus === 'loading'} className="btn-primary">
             {pwStatus === 'loading' ? 'Updating…' : 'Update Password'}
           </button>
